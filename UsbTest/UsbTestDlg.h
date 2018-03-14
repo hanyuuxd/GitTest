@@ -3,7 +3,14 @@
 //
 
 #pragma once
+#include "afxwin.h"
 
+struct DISKINFO
+{
+
+	DWORD dwDisk;			// disk number
+	DWORD dwPar;			// par number
+};
 
 // CUsbTestDlg ダイアログ
 class CUsbTestDlg : public CDialogEx
@@ -29,4 +36,8 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
+private:
+	BOOL getDisk();
+	// コンボボックスのコントロール
+	CComboBox m_xc_ComboCon;
 };

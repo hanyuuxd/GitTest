@@ -7,11 +7,15 @@
 #include "UsbTestDlg.h"
 #include "afxdialogex.h"
 
+/**/
+#include <winioctl.h>
+/**/
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
-
+#define MAX_DRIVE_COUNT 128		// 最大ドライブの数（仮定）
 // アプリケーションのバージョン情報に使われる CAboutDlg ダイアログ
 
 class CAboutDlg : public CDialogEx
@@ -56,6 +60,7 @@ CUsbTestDlg::CUsbTestDlg(CWnd* pParent /*=NULL*/)
 void CUsbTestDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_COMBO_USB_LIST, m_xc_ComboCon);
 }
 
 BEGIN_MESSAGE_MAP(CUsbTestDlg, CDialogEx)
@@ -152,3 +157,79 @@ HCURSOR CUsbTestDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+/*
+	20180314
+	hanyu
+	Get all USB divice, add list
+*/
+BOOL CUsbTestDlg::getDisk()
+{
+	// 
+	// コンボボックスに登録されているデータをリセット
+	m_xc_ComboCon.ResetContent();
+
+	BOOL bReturn;
+	// ドライブのハンドルを取得
+	CString strDrivePath;
+	HANDLE hDrive = INVALID_HANDLE_VALUE;
+	/*宣言*/
+	STORAGE_DEVICE_DESCRIPTOR* pDescriptor;
+	STORAGE_PROPERTY_QUERY sQuery;
+	BYTE* pcbData;
+	DWORD dwLen;
+	DWORD dwRet;
+	dwLen = 4096;
+	pcbData = new BYTE[dwLen];
+
+	STORAGE_BUS_TYPE BusType;
+	/**/
+	for (DWORD dwIndex = 0; dwIndex < MAX_DRIVE_COUNT; dwIndex++)
+	{
+		strDrivePath.Format(_T("\\\\.\\PhysicalDrive%d"), dwIndex);
+		// get handle
+		hDrive = CreateFile(
+			strDrivePath,
+			GENERIC_READ | GENERIC_WRITE,
+			FILE_SHARE_READ | FILE_SHARE_WRITE,
+			NULL,
+			OPEN_EXISTING,
+			FILE_ATTRIBUTE_NORMAL,
+			NULL);
+		if (hDrive==INVALID_HANDLE_VALUE)
+			continue;
+
+		// bus type
+		ZeroMemory(pcbData, dwLen);
+		sQuery.PropertyId = StorageDeviceProperty;
+		sQuery.QueryType = PropertyStandardQuery;
+		sQuery.AdditionalParameters[0] = 0;
+		bReturn = DeviceIoControl(
+			hDrive,
+			IOCTL_STORAGE_QUERY_PROPERTY,
+			&sQuery,
+			sizeof(STORAGE_PROPERTY_QUERY),
+			pcbData,
+			dwLen,
+			&dwRet,
+			NULL);
+		if (!bReturn)
+		{
+			// IOCTL_STORAGE_QUERY_PROPERTY error
+			// TODO
+			delete[] pcbData;
+			continue;
+		}
+		pDescriptor = (STORAGE_DEVICE_DESCRIPTOR*)pcbData;
+
+		BusType = BusTypeUnknown;
+		BusType = pDescriptor->BusType;
+
+		if (BusType==BusTypeUsb)
+		{
+			// get usb
+		}
+
+	}
+	return TRUE;
+}
