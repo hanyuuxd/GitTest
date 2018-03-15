@@ -5,13 +5,6 @@
 #pragma once
 #include "afxwin.h"
 
-struct DISKINFO
-{
-
-	DWORD dwDisk;			// disk number
-	DWORD dwPar;			// par number
-};
-
 // CUsbTestDlg ダイアログ
 class CUsbTestDlg : public CDialogEx
 {
@@ -40,4 +33,13 @@ private:
 	BOOL getDisk();
 	// コンボボックスのコントロール
 	CComboBox m_xc_ComboCon;
+
+	/*
+	modified by han 20180315
+	*/
+	CArray < CString > CA_List;
+	DWORD dwErr; // general error code
+public:
+	afx_msg void OnBnClickedOk();
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 };

@@ -1,0 +1,22 @@
+﻿30/03/15 17:43:46 にビルドを開始しました。
+     1>ノード 2 上のプロジェクト "E:\Work_Learning\MFC\USBTest\UsbTest\UsbTest\UsbTest.vcxproj" (Rebuild ターゲット)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\UsbTest.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\UsbTest.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt UsbTest.cpp UsbTestDlg.cpp
+         UsbTestDlg.cpp
+         UsbTest.cpp
+         コードを生成中...
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D _DEBUG /D _UNICODE /D UNICODE /l"0x0411" /IDebug\ /nologo /fo"Debug\UsbTest.res" UsbTest.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Work_Learning\MFC\USBTest\UsbTest\Debug\UsbTest.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='requireAdministrator' uiAccess='false'" /manifest:embed /manifestinput:"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\Include\Manifest\dpiaware.manifest" /DEBUG /PDB:"E:\Work_Learning\MFC\USBTest\UsbTest\Debug\UsbTest.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"wWinMainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Work_Learning\MFC\USBTest\UsbTest\Debug\UsbTest.lib" /MACHINE:X86 Debug\UsbTest.res
+         Debug\stdafx.obj
+         Debug\UsbTest.obj
+         Debug\UsbTestDlg.obj
+         UsbTest.vcxproj -> E:\Work_Learning\MFC\USBTest\UsbTest\Debug\UsbTest.exe
+     1>プロジェクト "E:\Work_Learning\MFC\USBTest\UsbTest\UsbTest\UsbTest.vcxproj" (Rebuild ターゲット) のビルドが完了しました。
+
+ビルドに成功しました。
+
+経過時間 00:00:06.50
